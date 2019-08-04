@@ -32,6 +32,7 @@ export default function Search(props) {
         <div className="container mt-2">
           <input
             className="form-control col-4 rounded-0"
+            type="number"
             name="radius"
             value={radius}
             onChange={props.handler}
