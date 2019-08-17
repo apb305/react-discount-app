@@ -23,16 +23,46 @@ export default class Main extends React.Component {
   }
 
   componentDidMount() {
-    axios
-      .get(
-        `https://api.discountapi.com/v2/deals?api_key=${
-          process.env.REACT_APP_SECRET
-        }`
-      )
-      .then(res => {
-        const deals = res.data.deals;
-        this.setState({ deals });
-      });
+    navigator.geolocation.getCurrentPosition(position => {
+      if (position) {  //Show local dicounts if the user allows geolocation
+        axios
+          .get(
+            `https://api.discountapi.com/v2/deals/?&location=${
+              position.coords.latitude
+            },${position.coords.longitude}&radius=20&api_key=${
+              process.env.REACT_APP_SECRET
+            }`
+          )
+          .then(
+            res => {
+              const deals = res.data.deals;
+              this.setState({ deals });
+            },
+            error => {
+              console.log(error);
+            }
+          );
+      } 
+    }, error => {
+      if (error) {  //Show online discounts if user declines geolocation
+        axios
+          .get(
+            `https://api.discountapi.com/v2/deals/?api_key=${
+              process.env.REACT_APP_SECRET
+            }`
+          )
+          .then(
+            res => {
+              const deals = res.data.deals;
+              this.setState({ deals });
+            },
+            error => {
+              console.log(error);
+            }
+          );
+      }
+      console.log(error)
+    });
   }
 
   searchDeals(e) {
@@ -46,6 +76,7 @@ export default class Main extends React.Component {
       )
       .then(res => {
         const deals = res.data.deals;
+        console.log(res.data);
         deals.length === 0
           ? this.setState({
               errMsg: "No results found",

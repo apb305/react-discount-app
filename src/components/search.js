@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Search(props) {
-  const {query, location, radius, online} = props.data
+  const { query, location, radius, online } = props.data;
   return (
     <div>
       <form onSubmit={props.submit}>
@@ -41,25 +41,21 @@ export default function Search(props) {
             required
           />
           <div className="mt-2">
-          <span>Online only: </span>
-          <label className="mr-1">
-            Yes
-          </label>
-          <input
-          className="mr-1"
-            name="online"
-            value={true}
-            type="radio"
-            onChange={props.handler}
+            <span>Online only: </span>
+            <label className="mr-1">Yes</label>
+            <input
+              className="mr-1"
+              name="online"
+              value={true}
+              type="radio"
+              onChange={props.handler}
             />
-          <label className="mr-1">
-            No
-          </label>
-          <input
-            value={false}
-            name="online"
-            type="radio"
-            onChange={props.handler}
+            <label className="mr-1">No</label>
+            <input
+              value={false}
+              name="online"
+              type="radio"
+              onChange={props.handler}
             />
           </div>
         </div>
