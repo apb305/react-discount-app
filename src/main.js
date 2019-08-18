@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import Search from "./components/search";
 import Cards from "./components/cards";
-import Paginate from "./components/paginate";
+//import Paginate from "./components/paginate";
 
 export default class Main extends React.Component {
   constructor() {
@@ -45,7 +45,7 @@ export default class Main extends React.Component {
             .get(
               `https://api.discountapi.com/v2/deals/?&location=${
                 position.coords.latitude
-              },${position.coords.longitude}&radius=20&page=${4}&api_key=${
+              },${position.coords.longitude}&radius=20&api_key=${
                 process.env.REACT_APP_SECRET
               }`
             )
@@ -71,7 +71,7 @@ export default class Main extends React.Component {
             )
             .then(
               res => {
-                const deals = res.data;
+                const deals = res.data.deals;
                 this.setState({ deals });
               },
               error => {
@@ -126,7 +126,7 @@ export default class Main extends React.Component {
           {this.state.deals.length === 0 ? "Loading..." : ""}
         </div>
         <Cards errMsg={this.state.errMsg} deals={this.state.deals} />
-        <Paginate paginate={this.paginate} />
+        {/*<Paginate paginate={this.paginate}*/}
       </div>
     );
   }

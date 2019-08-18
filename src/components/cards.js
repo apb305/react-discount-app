@@ -13,7 +13,7 @@ export default function Cards(props) {
                     className="card-img-top"
                     src={deal.deal.image_url}
                     alt={"Deal"}
-                    style={{ maxHeight: "200px", minHeight: "200px" }}
+                    //style={{ maxHeight: "500px", minHeight: "200px" }}
                   />
                 </a>
                 <div className="card-body">
@@ -23,7 +23,12 @@ export default function Cards(props) {
                   <p className="card-text text-truncate small">
                     {deal.deal.merchant.name}
                   </p>
-                  <p className="card-text small">${deal.deal.value}</p>
+                  <p className="card-text small">
+                    {deal.deal.merchant.locality}
+                  </p>
+                  <p className="card-text small">
+                    ${deal.deal.value.toFixed(2)}
+                  </p>
                 </div>
               </div>
             </div>
