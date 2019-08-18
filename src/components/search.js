@@ -48,14 +48,14 @@ export default function Search(props) {
               name="online"
               value={true}
               type="radio"
-              onChange={props.handler}
+              onChange={props.handlerTwo}
             />
             <label className="mr-1">No</label>
             <input
               value={false}
               name="online"
               type="radio"
-              onChange={props.handler}
+              onChange={props.handlerTwo}
             />
           </div>
         </div>
