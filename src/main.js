@@ -53,7 +53,6 @@ export default class Main extends React.Component {
               res => {
                 const deals = res.data.deals;
                 this.setState({ deals });
-                console.log(res);
               },
               error => {
                 console.log(error);
@@ -95,7 +94,6 @@ export default class Main extends React.Component {
       )
       .then(res => {
         const deals = res.data.deals;
-        console.log(res.data);
         deals.length === 0
           ? this.setState({
               errMsg: "No results found",
